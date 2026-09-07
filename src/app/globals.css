@@ -1,0 +1,31 @@
+:root {
+  --base-text: #101828;
+  --light-text: #8d929a;
+  --background: #f5f5f5;
+  --card-bg: #ffffff;
+  --input-bg: #f7f7f7;
+  --scroll-bar: #dadde1;
+  --btn-bg: #00aad4;
+  --btn-hover-bg: #0095ba;
+}
+
+body {
+  /* font-family: var(--font-roboto), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--background);
+}
+
+main {
+  display: flex;
+  flex: 1;
+}
+
+button {
+  cursor: pointer;
+}
