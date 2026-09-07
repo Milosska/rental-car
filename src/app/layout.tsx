@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 
+import Header from '@/components/Header/';
+
 import 'modern-normalize';
 import './globals.css';
 
@@ -19,7 +21,10 @@ const manropeFont = Manrope({
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={`${manropeFont.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

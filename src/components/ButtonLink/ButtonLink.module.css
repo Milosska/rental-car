@@ -1,0 +1,18 @@
+.button_link {
+  display: inline-block;
+  padding: 12px 0;
+  background-color: var(--btn-bg);
+  border-radius: 12px;
+
+  color: var(--card-bg);
+  text-align: center;
+  text-decoration: none;
+
+  transition: var(--transition-hover);
+  transition-property: background-color;
+}
+
+.button_link:hover,
+.button_link:focus {
+  background-color: var(--btn-hover-bg);
+}

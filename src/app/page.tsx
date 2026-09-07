@@ -1,9 +1,17 @@
-import styles from './page.module.css';
+import ButtonLink from '@/components/ButtonLink';
+
+import css from './page.module.css';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main>Home</main>
+    <div className={css.container}>
+      <div className={css.thumb}>
+        <h1 className={css.header}>Find your perfect rental car</h1>
+        <p className={css.sub_header}>
+          Reliable and budget-friendly rentals for any journey
+        </p>
+        <ButtonLink href="/catalog" text="View Catalog" width={276} />
+      </div>
     </div>
   );
 }

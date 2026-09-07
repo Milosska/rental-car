@@ -1,3 +1,51 @@
-.page {
-  background-color: var(--background);
+.container {
+  max-width: 1184px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--light-text);
+  background-image: url('/images/hero.jpg');
+  background-image: image-set(
+    url('/images/hero.webp') type('image/webp'),
+    url('/images/hero.jpg') type('image/jpeg')
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-resolution: 192dpi) {
+  .container {
+    background-image: url('/images/hero@2x.jpg');
+    background-image: image-set(
+      url('/images/hero@2x.webp') type('image/webp'),
+      url('/images/hero@2x.jpg') type('image/jpeg')
+    );
+  }
+}
+
+.thumb {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+
+  text-align: center;
+  color: #fff;
+}
+
+.header {
+  margin-bottom: 16px;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.sub_header {
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
 }

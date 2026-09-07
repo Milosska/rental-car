@@ -1,0 +1,28 @@
+.header {
+  background-color: var(--card-bg);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  max-width: 1184px;
+  margin: 0 auto;
+}
+
+.nav_list {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav_link {
+  padding: 24px 0;
+  color: var(--base-text);
+  text-decoration: none;
+}
+
+.active {
+  color: var(--btn-bg);
+}
