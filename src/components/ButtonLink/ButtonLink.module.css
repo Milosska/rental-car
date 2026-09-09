@@ -1,18 +1,30 @@
 .button_link {
   display: inline-block;
   padding: 12px 0;
-  background-color: var(--btn-bg);
+  border: 1px solid;
+  border-color: var(--btn-bg);
   border-radius: 12px;
 
-  color: var(--card-bg);
+  color: var(--base-text);
   text-align: center;
   text-decoration: none;
 
   transition: var(--transition-hover);
-  transition-property: background-color;
+  transition-property: border-color;
 }
 
 .button_link:hover,
 .button_link:focus {
+  border-color: var(--btn-hover-bg);
+}
+
+.button_link_colored {
+  background-color: var(--btn-bg);
+  color: var(--card-bg);
+  transition-property: background-color;
+}
+
+.button_link_colored:hover,
+.button_link_colored:focus {
   background-color: var(--btn-hover-bg);
 }
