@@ -1,0 +1,29 @@
+.button {
+  display: inline-block;
+  padding: 12px 0;
+  border: 1px solid;
+  border-color: var(--btn-bg);
+  border-radius: 12px;
+
+  color: var(--base-text);
+  text-align: center;
+
+  transition: var(--transition-hover);
+  transition-property: border-color;
+}
+
+.button:hover,
+.button:focus {
+  border-color: var(--btn-hover-bg);
+}
+
+.button_colored {
+  background-color: var(--btn-bg);
+  color: var(--card-bg);
+  transition-property: background-color;
+}
+
+.button_colored:hover,
+.button_colored:focus {
+  background-color: var(--btn-hover-bg);
+}
