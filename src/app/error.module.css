@@ -3,6 +3,13 @@
   width: 100%;
   margin: 0 auto;
   padding: 20px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
 }
 
 .header {
@@ -13,7 +20,7 @@
 }
 
 .subheader {
-  max-width: 351px;
+  max-width: 500px;
   margin-bottom: 40px;
   font-weight: 500;
   line-height: 1.25;

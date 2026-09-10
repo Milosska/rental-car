@@ -3,13 +3,15 @@ import css from './Button.module.css';
 interface IButtonLinkProps {
   text: string;
   onClick: () => void;
+  type?: 'button' | 'submit';
   width?: number;
   colored?: boolean;
 }
 
-const ButtonLink = ({
+const Button = ({
   text,
   onClick,
+  type = 'button',
   width = 244,
   colored = false,
 }: IButtonLinkProps) => {
@@ -18,10 +20,11 @@ const ButtonLink = ({
       onClick={onClick}
       className={`${css.button} ${colored ? css.button_link_colored : ''}`}
       style={{ width }}
+      type={type}
     >
       {text}
     </button>
   );
 };
 
-export default ButtonLink;
+export default Button;

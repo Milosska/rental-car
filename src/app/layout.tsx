@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 
+import TanStackProvider from '@/components/TanStackProvider';
 import Header from '@/components/Header/';
 
 import 'modern-normalize';
@@ -23,7 +24,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html lang="en" className={`${manropeFont.variable}`}>
       <body>
         <Header />
-        <main>{children}</main>
+        <TanStackProvider>
+          <main>{children}</main>
+        </TanStackProvider>
       </body>
     </html>
   );
