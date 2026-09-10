@@ -1,7 +1,8 @@
 .container {
-  max-width: 1184px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  padding: 84px 0;
   background-color: var(--light-text);
   background-image: url('/images/hero.jpg');
   background-image: image-set(
@@ -24,13 +25,6 @@
 }
 
 .thumb {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 100%;
-
   text-align: center;
   color: #fff;
 }

@@ -5,6 +5,8 @@
   border-color: var(--btn-bg);
   border-radius: 12px;
 
+  width: 100%;
+
   color: var(--base-text);
   text-align: center;
   text-decoration: none;

@@ -11,7 +11,7 @@ interface IButtonLinkProps {
 const ButtonLink = ({
   href,
   text,
-  width = 244,
+  width,
   colored = false,
 }: IButtonLinkProps) => {
   return (

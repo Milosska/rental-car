@@ -3,6 +3,7 @@ import type { Car } from '@/lib/types/cars';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
 export const INITIAL_PAGE = 1;
+const PER_PAGE = 12;
 
 const carApi = axios.create({
   baseURL: BASE_URL,
@@ -27,7 +28,7 @@ export const fetchCars = async ({
   page,
 }: ICarsResponseParams): Promise<ICarsResponse> => {
   const response = await carApi.get<ICarsResponse>('/cars', {
-    params: { page },
+    params: { page, perPage: PER_PAGE },
   });
 
   return response.data;

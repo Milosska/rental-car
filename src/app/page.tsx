@@ -4,7 +4,7 @@ import css from './page.module.css';
 
 export default function Home() {
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <div className={css.thumb}>
         <h1 className={css.header}>Find your perfect rental car</h1>
         <p className={css.sub_header}>
@@ -17,6 +17,6 @@ export default function Home() {
           colored
         />
       </div>
-    </div>
+    </section>
   );
 }

@@ -6,6 +6,7 @@ interface IButtonLinkProps {
   type?: 'button' | 'submit';
   width?: number;
   colored?: boolean;
+  styles?: React.CSSProperties;
 }
 
 const Button = ({
@@ -14,12 +15,13 @@ const Button = ({
   type = 'button',
   width = 244,
   colored = false,
+  styles,
 }: IButtonLinkProps) => {
   return (
     <button
       onClick={onClick}
       className={`${css.button} ${colored ? css.button_link_colored : ''}`}
-      style={{ width }}
+      style={{ width, ...styles }}
       type={type}
     >
       {text}

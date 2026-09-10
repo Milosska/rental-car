@@ -15,18 +15,18 @@ const Header = () => {
         </Link>
         <nav aria-label="Main Navigation">
           <ul className={css.nav_list}>
-            <li>
+            <li className={css.nav_link}>
               <Link
                 href="/"
-                className={`${css.nav_link} ${pathname === '/' ? css.active : ''}`}
+                className={`${pathname === '/' ? css.active : ''}`}
               >
                 Home
               </Link>
             </li>
-            <li>
+            <li className={css.nav_link}>
               <Link
                 href="/catalog/filters"
-                className={`${css.nav_link} ${pathname.includes('catalog') ? css.active : ''}`}
+                className={`${pathname.includes('catalog') ? css.active : ''}`}
               >
                 Catalog
               </Link>
