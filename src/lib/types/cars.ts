@@ -21,3 +21,10 @@ export type Car = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CarSearchParams = {
+  brand?: string;
+  price?: string;
+  minMileage?: string;
+  maxMileage?: string;
+};

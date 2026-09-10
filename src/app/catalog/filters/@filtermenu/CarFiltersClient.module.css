@@ -1,0 +1,81 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 16px;
+
+  width: 100%;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--light-text);
+}
+
+.input {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.input_brand {
+  width: 204px;
+}
+
+.input_price {
+  width: 196px;
+}
+
+.input_left {
+  width: 160px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 3px;
+}
+
+.input_right {
+  width: 160px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.select {
+  appearance: none;
+}
+
+.select_wrapper {
+  position: relative;
+}
+
+.select_icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-45%);
+  pointer-events: none;
+}
+
+.select::-webkit-scrollbar {
+  width: 8px;
+}
+
+.select::-webkit-scrollbar-thumb {
+  background: var(--scroll-bar);
+  border-radius: 10px;
+}
+
+.input[type='number'] {
+  appearance: textfield;
+}
+
+.input[type='number']::-webkit-inner-spin-button,
+.input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}

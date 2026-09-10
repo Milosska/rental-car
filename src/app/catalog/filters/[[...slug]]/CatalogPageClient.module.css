@@ -1,3 +1,8 @@
+.container {
+  position: relative;
+  padding-top: 88px;
+}
+
 .car_list {
   display: flex;
   flex-wrap: wrap;

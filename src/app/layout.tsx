@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 
 import TanStackProvider from '@/components/TanStackProvider';
 import Header from '@/components/Header/';
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <TanStackProvider>
           <main>{children}</main>
         </TanStackProvider>
+        <Toaster position="top-right" />
       </body>
     </html>
   );

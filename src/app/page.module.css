@@ -1,8 +1,12 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 84px 0;
+  padding: 60px 0;
   background-color: var(--light-text);
   background-image: url('/images/hero.jpg');
   background-image: image-set(

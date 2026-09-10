@@ -8,8 +8,10 @@
   width: 100%;
 
   color: var(--base-text);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
   text-align: center;
-  text-decoration: none;
 
   transition: var(--transition-hover);
   transition-property: border-color;
