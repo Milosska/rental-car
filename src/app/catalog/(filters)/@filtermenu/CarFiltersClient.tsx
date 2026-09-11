@@ -79,9 +79,7 @@ const CarFiltersClient = () => {
         }
       });
 
-      startTransition(() =>
-        router.push(`/catalog/filters?${params.toString()}`)
-      );
+      startTransition(() => router.push(`/catalog?${params.toString()}`));
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         toast.error(error.message);

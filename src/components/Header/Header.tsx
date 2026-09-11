@@ -25,7 +25,7 @@ const Header = () => {
             </li>
             <li className={css.nav_link}>
               <Link
-                href="/catalog/filters"
+                href="/catalog"
                 className={`${pathname.includes('catalog') ? css.active : ''}`}
               >
                 Catalog
