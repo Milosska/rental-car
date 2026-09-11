@@ -14,7 +14,7 @@ const Button = ({
   text,
   onClick,
   type = 'button',
-  width = 244,
+  width,
   colored = false,
   disabled = false,
   styles,

@@ -11,6 +11,7 @@ export type Car = {
   rentalCompany: string;
   rentalConditions: string[];
   mileage: number;
+  fuelConsumption: number;
   stockNumber: number;
   features: string[];
   location: {

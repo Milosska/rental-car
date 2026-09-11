@@ -12,6 +12,7 @@ const carApi = axios.create({
   },
 });
 
+// #region Fetch cars
 interface ICarsResponse {
   cars: Car[];
   totalCars: number;
@@ -35,7 +36,16 @@ export const fetchCars = async ({
 
   return response.data;
 };
+// #endregion Fetch cars
 
+// #region Fetch car by id
+export const fetchCarById = async (id: string): Promise<Car> => {
+  const response = await carApi.get<Car>(`/cars/${id}`);
+  return response.data;
+};
+// #endregion Fetch car by id
+
+// #region Fetch filters
 interface IFiltersResponse {
   brands: string[];
   price: {
@@ -49,3 +59,5 @@ export const fetchFilters = async (): Promise<IFiltersResponse> => {
 
   return response.data;
 };
+
+// #endregion Fetch filters

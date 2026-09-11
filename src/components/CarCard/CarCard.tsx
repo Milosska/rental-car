@@ -29,7 +29,6 @@ const CarCard = ({
           alt={`Car ${brand}, ${model}`}
           width={244}
           height={268}
-          // placeholder="blur"
           className={css.car_img}
         />
 

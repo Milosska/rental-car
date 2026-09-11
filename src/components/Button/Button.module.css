@@ -1,4 +1,5 @@
 .button {
+  width: 100%;
   padding: 12px 0;
   border: 1px solid;
   border-color: var(--btn-bg);
