@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import CarCard from '@/components/CarCard';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
+import CarNotFound from '@/components/CarNotFound';
 
 import css from './CatalogPageClient.module.css';
 
@@ -26,6 +27,8 @@ const CatalogPageClient = () => {
   } = useInfiniteQuery(carFetchOptions(params));
 
   const cars = data && data.pages.flatMap(pageData => pageData.cars);
+  const isCarsFound = cars && cars.length > 0;
+  const isPageLoading = isLoading || isFetching || isFetchingNextPage;
 
   if (isError && error) {
     toast.error(error.message);
@@ -33,13 +36,14 @@ const CatalogPageClient = () => {
 
   return (
     <div className={css.container}>
-      {cars && (
+      {isCarsFound && (
         <ul className={css.car_list}>
           {cars.map(car => (
             <CarCard key={car.id} car={car} />
           ))}
         </ul>
       )}
+      {!isCarsFound && <CarNotFound />}
       {hasNextPage && (
         <Button
           text="Load More"
@@ -48,7 +52,7 @@ const CatalogPageClient = () => {
           disabled={isFetchingNextPage}
         />
       )}
-      {(isLoading || isFetching || isFetchingNextPage) && (
+      {isPageLoading && (
         <Loader
           header="Loading cars..."
           text="Please wait while we fetch the best cars for you"
