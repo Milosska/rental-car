@@ -4,11 +4,21 @@ import toast from 'react-hot-toast';
 
 import { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+import { useStoredValues } from '@/lib/hooks/useStoredValues';
 
 import Button from '@/components/Button';
 import css from './CarBookingForm.module.css';
 
 const CarBookingForm = () => {
+  const { values, updateValues, resetValues } = useStoredValues({
+    initialValues: {
+      name: '',
+      email: '',
+      comment: '',
+    },
+    key: 'formValues',
+  });
+
   const [errors, setErrors] = useState({
     name: null,
     email: null,
@@ -45,6 +55,8 @@ const CarBookingForm = () => {
           ...prevErrors,
           [name]: null,
         }));
+
+        updateValues({ values: { [name]: value } });
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           setErrors(prevErrors => ({
@@ -62,6 +74,7 @@ const CarBookingForm = () => {
       const data = Object.fromEntries(formData);
       await carBookingFormValidationSchema.validate(data);
       console.log(data);
+      resetValues();
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         toast.error(
@@ -96,6 +109,7 @@ const CarBookingForm = () => {
             name="name"
             placeholder=" "
             required
+            defaultValue={values.name}
             onChange={handleChange}
           ></input>
           {errors.name && <p className={css.error_message}>{errors.name}</p>}
@@ -114,6 +128,7 @@ const CarBookingForm = () => {
             name="email"
             placeholder=" "
             required
+            defaultValue={values.email}
             onChange={handleChange}
           ></input>
           {errors.email && <p className={css.error_message}>{errors.email}</p>}
@@ -131,6 +146,7 @@ const CarBookingForm = () => {
             name="comment"
             placeholder=" "
             rows={6}
+            defaultValue={values.comment}
             onChange={handleChange}
           ></textarea>
           {errors.comment && (
