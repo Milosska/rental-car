@@ -63,7 +63,11 @@ const CarFiltersClient = () => {
           'Maximum mileage must be greater than or equal to minimum mileage',
           function (maxMileage) {
             const { minMileage } = this.parent;
-            return !minMileage || !maxMileage || maxMileage >= minMileage;
+            return (
+              !minMileage ||
+              !maxMileage ||
+              Number(maxMileage) >= Number(minMileage)
+            );
           }
         ),
     })
@@ -154,7 +158,9 @@ const CarFiltersClient = () => {
       </fieldset>
 
       <Button
-        text="Search"
+        text={
+          isLoading || isFilterTransactionPending ? 'Searching...' : 'Search'
+        }
         type="submit"
         width={156}
         colored

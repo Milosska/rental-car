@@ -29,7 +29,7 @@ export async function generateMetadata({
     ...baseMetadataValues,
     openGraph: {
       ...baseMetadataValues,
-      url: `${WEBSITE_BASE_URL}/catalog/${searchParamsObject}`,
+      url: `${WEBSITE_BASE_URL}/catalog?${new URLSearchParams(searchParamsObject)}`,
       siteName: 'Rental Car',
       images: [baseMetadataImg],
       type: 'article',

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { cache } from 'react';
 import type {
   Car,
   CarSearchParams,
@@ -43,10 +44,10 @@ export const fetchCars = async ({
 // #endregion Fetch cars
 
 // #region Fetch car by id
-export const fetchCarById = async (id: string): Promise<Car> => {
+export const fetchCarById = cache(async (id: string): Promise<Car> => {
   const response = await carApi.get<Car>(`/cars/${id}`);
   return response.data;
-};
+});
 // #endregion Fetch car by id
 
 // #region Book a car

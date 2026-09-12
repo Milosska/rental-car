@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { WEBSITE_BASE_URL } from '@/lib/metadata';
 
 import { QueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 import CarBookingForm from '@/components/CarBookingForm';
@@ -17,6 +19,7 @@ import {
 import { PiRoadHorizon } from 'react-icons/pi';
 
 import { fetchCarById } from '@/lib/api/cars';
+import type { Car } from '@/lib/types/cars';
 import css from './page.module.css';
 
 interface ICarPageProps {
@@ -28,7 +31,22 @@ export async function generateMetadata({
 }: ICarPageProps): Promise<Metadata> {
   const { carId } = await params;
 
-  const { brand, model, year, description, img } = await fetchCarById(carId);
+  let car: Car;
+  try {
+    car = await fetchCarById(carId);
+  } catch (error) {
+    if (isAxiosError(error) && error.response?.status === 404) {
+      notFound();
+    }
+
+    // Fallback default metadata if a non-404 error occurs
+    return {
+      title: 'Rental Car — Details',
+      description: 'Car details and rental booking options.',
+    };
+  }
+
+  const { brand, model, year, description, img } = car;
 
   const baseMetadataValues = {
     title: `Rental Car — ${brand} ${model}, ${year}`,
@@ -70,6 +88,20 @@ const CarPage = async ({ params }: ICarPageProps) => {
   const { carId } = await params;
   const queryClient = new QueryClient();
 
+  let car;
+  try {
+    car = await queryClient.query({
+      queryKey: ['car', carId],
+      queryFn: () => fetchCarById(carId),
+    });
+  } catch (error) {
+    if (isAxiosError(error) && error.response?.status === 404) {
+      notFound();
+    }
+
+    throw error;
+  }
+
   const {
     img,
     brand,
@@ -85,10 +117,7 @@ const CarPage = async ({ params }: ICarPageProps) => {
     engine,
     mileage,
     features,
-  } = await queryClient.query({
-    queryKey: ['car', carId],
-    queryFn: () => fetchCarById(carId),
-  });
+  } = car;
 
   return (
     <div className={css.container}>

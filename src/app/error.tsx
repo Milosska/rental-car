@@ -18,7 +18,7 @@ const ErrorPage = ({ error, reset }: IErrorPageProps) => {
         <br />
         Please try again.
       </p>
-      <Button text="Try Again" onClick={reset} />
+      <Button text="Try Again" onClick={reset} width={156} />
     </div>
   );
 };

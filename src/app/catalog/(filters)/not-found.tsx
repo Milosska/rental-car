@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   ...baseMetadataValues,
   openGraph: {
     ...baseMetadataValues,
-    url: `${WEBSITE_BASE_URL}/}`,
+    url: `${WEBSITE_BASE_URL}/`,
     siteName: 'Rental Car',
     images: [
       {

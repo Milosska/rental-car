@@ -29,7 +29,10 @@ const CarBookingForm = () => {
   const carBookingMutation = useMutation({
     mutationFn: ({ id, bookingData }: IBookCarParams) =>
       bookCar({ id, bookingData }),
-    onSuccess: data => toast.success(data.message),
+    onSuccess: data => {
+      toast.success(data.message);
+      clearDraftForm();
+    },
     onError: error => toast.error(`Failed to book a car. ${error}`),
   });
 
@@ -85,7 +88,6 @@ const CarBookingForm = () => {
       const data = Object.fromEntries(formData) as CarBookingFormData;
       await carBookingFormValidationSchema.validate(data);
       carBookingMutation.mutate({ id: carId, bookingData: data });
-      clearDraftForm();
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         toast.error(
@@ -149,7 +151,7 @@ const CarBookingForm = () => {
             className={`${css.label} ${errors.comment ? css.label_error : ''}`}
             htmlFor="comment"
           >
-            Comment
+            Comment*
           </label>
           <textarea
             className={`${css.input} ${css.textarea} ${errors.comment ? css.input_error : ''}`}
@@ -164,7 +166,12 @@ const CarBookingForm = () => {
             <p className={css.error_message}>{errors.comment}</p>
           )}
         </div>
-        <Button type="submit" text="Send" colored />
+        <Button
+          type="submit"
+          text={carBookingMutation.isPending ? 'Sending...' : 'Send'}
+          colored
+          disabled={carBookingMutation.isPending}
+        />
       </form>
     </section>
   );

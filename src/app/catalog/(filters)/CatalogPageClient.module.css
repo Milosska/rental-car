@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  padding-top: 88px;
+  padding: 88px 10px 0;
 }
 
 .car_list {
