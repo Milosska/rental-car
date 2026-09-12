@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-import { useStoredValues } from '@/lib/hooks/useStoredValues';
+import { useDraftFormStore } from '@/lib/store/formStore';
 
 import { bookCar } from '@/lib/api/cars';
 import type { IBookCarParams } from '@/lib/api/cars';
@@ -19,15 +19,7 @@ import css from './CarBookingForm.module.css';
 
 const CarBookingForm = () => {
   const { carId } = useParams<{ carId: string }>();
-  const { values, updateValues, resetValues } =
-    useStoredValues<CarBookingFormData>({
-      initialValues: {
-        name: '',
-        email: '',
-        comment: '',
-      },
-      key: 'formValues',
-    });
+  const { draftForm, setDraftForm, clearDraftForm } = useDraftFormStore();
   const [errors, setErrors] = useState({
     name: null,
     email: null,
@@ -75,7 +67,7 @@ const CarBookingForm = () => {
           [name]: null,
         }));
 
-        updateValues({ values: { [name]: value } });
+        setDraftForm({ ...draftForm, [name]: value });
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           setErrors(prevErrors => ({
@@ -93,7 +85,7 @@ const CarBookingForm = () => {
       const data = Object.fromEntries(formData) as CarBookingFormData;
       await carBookingFormValidationSchema.validate(data);
       carBookingMutation.mutate({ id: carId, bookingData: data });
-      resetValues();
+      clearDraftForm();
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         toast.error(
@@ -128,7 +120,7 @@ const CarBookingForm = () => {
             name="name"
             placeholder=" "
             required
-            defaultValue={values.name}
+            defaultValue={draftForm.name}
             onChange={handleChange}
           ></input>
           {errors.name && <p className={css.error_message}>{errors.name}</p>}
@@ -147,7 +139,7 @@ const CarBookingForm = () => {
             name="email"
             placeholder=" "
             required
-            defaultValue={values.email}
+            defaultValue={draftForm.email}
             onChange={handleChange}
           ></input>
           {errors.email && <p className={css.error_message}>{errors.email}</p>}
@@ -165,7 +157,7 @@ const CarBookingForm = () => {
             name="comment"
             placeholder=" "
             rows={6}
-            defaultValue={values.comment}
+            defaultValue={draftForm.comment}
             onChange={handleChange}
           ></textarea>
           {errors.comment && (
