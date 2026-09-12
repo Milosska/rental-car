@@ -48,7 +48,13 @@ const CarCard = ({
           <p className={css.car_detail}>{type}</p>
           <p>{mileage} km</p>
         </div>
-        <ButtonLink href={`/catalog/${id}`} text="Read more" colored />
+        <ButtonLink
+          href={`/catalog/${id}`}
+          text="Read more"
+          colored
+          ariaLabel={`View details for ${brand} ${model}, ${year}`}
+          target="_blank"
+        />
       </div>
     </li>
   );

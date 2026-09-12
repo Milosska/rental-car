@@ -11,7 +11,13 @@ const Header = () => {
     <header className={css.header}>
       <div className={css.container}>
         <Link href="/" aria-label="Home">
-          <Image src="/logo.svg" alt="Logo" width={120} height={26} />
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            width={120}
+            height={26}
+            aria-label="Go to Home page."
+          />
         </Link>
         <nav aria-label="Main Navigation">
           <ul className={css.nav_list}>
@@ -19,6 +25,7 @@ const Header = () => {
               <Link
                 href="/"
                 className={`${pathname === '/' ? css.active : ''}`}
+                aria-label="Go to Home page."
               >
                 Home
               </Link>
@@ -27,6 +34,7 @@ const Header = () => {
               <Link
                 href="/catalog"
                 className={`${pathname.includes('catalog') ? css.active : ''}`}
+                aria-label="Go to Catalog page."
               >
                 Catalog
               </Link>

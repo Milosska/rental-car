@@ -10,7 +10,13 @@ export default function Home() {
         <p className={css.sub_header}>
           Reliable and budget-friendly rentals for any journey
         </p>
-        <ButtonLink href="/catalog" text="View Catalog" width={276} colored />
+        <ButtonLink
+          href="/catalog"
+          text="View Catalog"
+          width={276}
+          colored
+          ariaLabel="View vehicles catalog"
+        />
       </div>
     </section>
   );

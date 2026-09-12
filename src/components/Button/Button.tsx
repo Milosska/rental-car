@@ -1,6 +1,6 @@
 import css from './Button.module.css';
 
-interface IButtonLinkProps {
+interface IButtonProps {
   text: string;
   onClick?: () => void;
   type?: 'button' | 'submit';
@@ -18,7 +18,7 @@ const Button = ({
   colored = false,
   disabled = false,
   styles,
-}: IButtonLinkProps) => {
+}: IButtonProps) => {
   return (
     <button
       onClick={onClick}

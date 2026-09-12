@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import { Oval } from 'react-loader-spinner';
 import css from './Loader.module.css';
 
@@ -8,6 +9,14 @@ interface ILoaderProps {
 }
 
 const Loader = ({ header, text }: ILoaderProps) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   return (
     <div className={css.backdrop}>
       <div role="status" aria-label="Loading" className={css.thumb}>

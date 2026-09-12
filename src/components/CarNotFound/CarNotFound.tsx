@@ -27,7 +27,6 @@ const CarNotFound = () => {
         We couldn`t find any cars that match your current filters. Try changing
         your search criteria or reset the filters.
       </p>
-      {/* <ButtonLink href="/catalog?reset=true" text="Reset filters" width={156} /> */}
       <Button onClick={handleNavigate} text="Reset filters" width={156} />
     </>
   );
