@@ -1,4 +1,4 @@
-export const WEBSITE_BASE_URL = 'http://localhost:3000';
+export const WEBSITE_BASE_URL = 'https://rental-car-theta-three.vercel.app';
 
 export const baseMetadataImg = {
   url: '/images/hero.jpg',
