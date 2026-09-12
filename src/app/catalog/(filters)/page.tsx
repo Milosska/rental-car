@@ -1,3 +1,6 @@
+import type { Metadata } from 'next';
+import { WEBSITE_BASE_URL, baseMetadataImg } from '@/lib/metadata';
+
 import { notFound } from 'next/navigation';
 import {
   QueryClient,
@@ -9,6 +12,34 @@ import { carFetchOptions } from '@/lib/api/carsQueries';
 import type { CarSearchParams } from '@/lib/types/cars';
 interface ICatalogPage {
   searchParams?: Promise<CarSearchParams>;
+}
+
+export async function generateMetadata({
+  searchParams,
+}: ICatalogPage): Promise<Metadata> {
+  const searchParamsObject = await searchParams;
+
+  const baseMetadataValues = {
+    title: `Rental Car — Car Catalog`,
+    description:
+      'Browse our available rental cars, filter vehicles by your preferences, and find the right car for your trip.',
+  };
+
+  return {
+    ...baseMetadataValues,
+    openGraph: {
+      ...baseMetadataValues,
+      url: `${WEBSITE_BASE_URL}/catalog/${searchParamsObject}`,
+      siteName: 'Rental Car',
+      images: [baseMetadataImg],
+      type: 'article',
+    },
+    twitter: {
+      ...baseMetadataValues,
+      card: 'summary_large_image',
+      images: [baseMetadataImg],
+    },
+  };
 }
 
 const CatalogPage = async ({ searchParams }: ICatalogPage) => {

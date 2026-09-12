@@ -1,3 +1,6 @@
+import type { Metadata } from 'next';
+import { WEBSITE_BASE_URL } from '@/lib/metadata';
+
 import { QueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 
@@ -18,6 +21,49 @@ import css from './page.module.css';
 
 interface ICarPageProps {
   params: Promise<{ carId: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ICarPageProps): Promise<Metadata> {
+  const { carId } = await params;
+
+  const { brand, model, year, description, img } = await fetchCarById(carId);
+
+  const baseMetadataValues = {
+    title: `Rental Car — ${brand} ${model}, ${year}`,
+    description: description.slice(0, 150),
+  };
+
+  return {
+    ...baseMetadataValues,
+    openGraph: {
+      ...baseMetadataValues,
+      url: `${WEBSITE_BASE_URL}/catalog/${carId}`,
+      siteName: 'Rental Car',
+      images: [
+        {
+          url: img,
+          width: 1200,
+          height: 630,
+          alt: `${brand} ${model}, ${year}`,
+        },
+      ],
+      type: 'article',
+    },
+    twitter: {
+      ...baseMetadataValues,
+      card: 'summary_large_image',
+      images: [
+        {
+          url: img,
+          width: 1200,
+          height: 630,
+          alt: `${brand} ${model}, ${year}`,
+        },
+      ],
+    },
+  };
 }
 
 const CarPage = async ({ params }: ICarPageProps) => {
