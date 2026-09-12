@@ -1,9 +1,11 @@
 'use client';
 import * as Yup from 'yup';
-import { useRouter } from 'next/navigation';
-import { useTransition } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+
+import { useRouter } from 'next/navigation';
+import { useTransition, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useFiltersStore } from '@/lib/store/filtersStore';
 
 import { fetchFilters } from '@/lib/api/cars';
 
@@ -13,8 +15,14 @@ import Button from '@/components/Button';
 import css from './CarFiltersClient.module.css';
 
 const CarFiltersClient = () => {
+  const { isFilterTransactionPending, setIsFilterTransactionPending } =
+    useFiltersStore();
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  useEffect(() => {
+    setIsFilterTransactionPending(isPending);
+  }, [isPending, setIsFilterTransactionPending]);
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['filters'],
@@ -150,7 +158,7 @@ const CarFiltersClient = () => {
         type="submit"
         width={156}
         colored
-        disabled={isLoading || isPending}
+        disabled={isLoading || isFilterTransactionPending}
       />
     </form>
   );
