@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rental Car
 
-## Getting Started
+Rental Car is a web application for browsing and booking rental cars. Users can
+search available vehicles, filter cars by brand and price, view detailed
+information, and submit booking requests.
 
-First, run the development server:
+**Live Demo:** [Rental Car](https://rental-car-theta-three.vercel.app)
+
+## Screenshots
+
+### Home page
+
+![Rental Car Home Page](./src/assets/screenshots/home.png)
+
+### Car catalog
+
+![Rental Car Catalog](./src/assets/screenshots/catalog.png)
+
+### Car details
+
+![Rental Car Details](./src/assets/screenshots/car-details.png)
+
+## Features
+
+- Browse a paginated list of available cars
+- Search cars using filters
+- Filter cars by brand, price, and mileage range
+- View detailed information about a selected car
+- Submit a car booking request
+- Backend API integration with Axios and TanStack
+- Form validation with Yup
+- Loading and error notifications
+
+## Technologies
+
+- React 19
+- TypeScript
+- Next.js
+- Axios
+- TanStack Query
+- Yup
+- CSS
+- ESLint
+
+## Installation
+
+Make sure that [Node.js](https://nodejs.org/) is installed.
+
+1. Clone the repository:
+
+   ```bash
+   git clone [<repository-url>](https://github.com/Milosska/rental-car.git)
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd rental-car
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Create a `.env.local` file in the project root and add the backend URL:
+
+   ```env
+   NEXT_PUBLIC_BACKEND_BASE_URL=https://your-backend-url.com
+   ```
+
+## Running the Project
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the application in your browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Scripts
 
-## Learn More
+- `npm run dev` — starts the development server
+- `npm run build` — creates a production build
+- `npm run start` — starts the production server
+- `npm run lint` — checks the project for code issues
 
-To learn more about Next.js, take a look at the following resources:
+## API Integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application communicates with the backend using the following endpoints:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `GET /cars` — retrieves a paginated list of cars
+- `GET /cars/:id` — retrieves information about a specific car
+- `GET /cars/filters` — retrieves available brands and price limits
+- `POST /cars/:id/booking-requests` — submits a booking request
 
-## Deploy on Vercel
+The API base URL is configured with the `NEXT_PUBLIC_BACKEND_BASE_URL`
+environment variable.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+rental-car/
+├── public/              # Static assets
+├── src/
+│   ├── app/              # Application pages and layouts
+│   ├── components/       # Reusable UI components
+│   ├── lib/
+│   │   ├── api/          # API requests
+│   │   └── types/        # TypeScript types
+│   └── styles/           # Application styles
+├── .env.local            # Local environment variables
+├── package.json
+└── README.md
+```
+
+## Author
+
+**Milosska**
+
+- GitHub: [Milosska](https://github.com/Milosska)
+
+## License
+
+This project was created for educational purposes.
