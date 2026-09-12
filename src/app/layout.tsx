@@ -28,7 +28,17 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <TanStackProvider>
           <main>{children}</main>
         </TanStackProvider>
-        <Toaster position="top-right" />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            success: {
+              iconTheme: {
+                primary: '#00aad4',
+                secondary: '#ffffff',
+              },
+            },
+          }}
+        />
       </body>
     </html>
   );

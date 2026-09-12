@@ -1,5 +1,9 @@
 import axios from 'axios';
-import type { Car, CarSearchParams } from '@/lib/types/cars';
+import type {
+  Car,
+  CarSearchParams,
+  CarBookingFormData,
+} from '@/lib/types/cars';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
 export const INITIAL_PAGE = 1;
@@ -44,6 +48,27 @@ export const fetchCarById = async (id: string): Promise<Car> => {
   return response.data;
 };
 // #endregion Fetch car by id
+
+// #region Book a car
+export interface IBookCarParams {
+  id: string;
+  bookingData: CarBookingFormData;
+}
+interface IBookCarResponse {
+  message: string;
+}
+
+export const bookCar = async ({
+  id,
+  bookingData,
+}: IBookCarParams): Promise<IBookCarResponse> => {
+  const response = await carApi.post<IBookCarResponse>(
+    `/cars/${id}/booking-requests`,
+    bookingData
+  );
+  return response.data;
+};
+// #endregion Book a car
 
 // #region Fetch filters
 interface IFiltersResponse {

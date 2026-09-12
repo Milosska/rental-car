@@ -29,3 +29,9 @@ export type CarSearchParams = {
   minMileage?: string;
   maxMileage?: string;
 };
+
+export type CarBookingFormData = {
+  name: string;
+  email: string;
+  comment: string;
+};

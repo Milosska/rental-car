@@ -1,32 +1,49 @@
 'use client';
 import * as Yup from 'yup';
+import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
 import { useState } from 'react';
+import { useParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { useStoredValues } from '@/lib/hooks/useStoredValues';
+
+import { bookCar } from '@/lib/api/cars';
+import type { IBookCarParams } from '@/lib/api/cars';
+import type { CarBookingFormData } from '@/lib/types/cars';
+
+import { capitalizeWords } from '@/lib/utils/utils';
 
 import Button from '@/components/Button';
 import css from './CarBookingForm.module.css';
 
 const CarBookingForm = () => {
-  const { values, updateValues, resetValues } = useStoredValues({
-    initialValues: {
-      name: '',
-      email: '',
-      comment: '',
-    },
-    key: 'formValues',
-  });
-
+  const { carId } = useParams<{ carId: string }>();
+  const { values, updateValues, resetValues } =
+    useStoredValues<CarBookingFormData>({
+      initialValues: {
+        name: '',
+        email: '',
+        comment: '',
+      },
+      key: 'formValues',
+    });
   const [errors, setErrors] = useState({
     name: null,
     email: null,
     comment: null,
   });
 
+  const carBookingMutation = useMutation({
+    mutationFn: ({ id, bookingData }: IBookCarParams) =>
+      bookCar({ id, bookingData }),
+    onSuccess: data => toast.success(data.message),
+    onError: error => toast.error(`Failed to book a car. ${error}`),
+  });
+
   const carBookingFormValidationSchema = Yup.object().shape({
     name: Yup.string()
+      .transform(value => capitalizeWords(value))
       .min(3, 'Name should have at least 3 characters.')
       .max(50, 'Name should not exceed 50 characters.')
       .required('Please enter your name.'),
@@ -36,7 +53,9 @@ const CarBookingForm = () => {
         'Email should be in a valid format.'
       )
       .required('Please enter your email.'),
-    comment: Yup.string().max(1000, 'Name should not exceed 1000 characters.'),
+    comment: Yup.string()
+      .max(1000, 'Name should not exceed 1000 characters.')
+      .required('Comment is required.'),
   });
 
   const handleChange = useDebouncedCallback(
@@ -71,9 +90,9 @@ const CarBookingForm = () => {
 
   const handleSubmit = async (formData: FormData) => {
     try {
-      const data = Object.fromEntries(formData);
+      const data = Object.fromEntries(formData) as CarBookingFormData;
       await carBookingFormValidationSchema.validate(data);
-      console.log(data);
+      carBookingMutation.mutate({ id: carId, bookingData: data });
       resetValues();
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
